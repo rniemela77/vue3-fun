@@ -1,11 +1,4 @@
 <script setup lang="ts">
-interface Person {
-  name: string;
-  id: number;
-  age?: number;
-  animals?: Array<"👽">;
-}
-
 interface Props {
   student: Person;
   isManager?: boolean;
@@ -13,22 +6,16 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   isManager: false,
-  animals: () => [],
 });
-
-const { name, id, age, animals } = props.student;
 </script>
 
 <template>
-  <div class="person">
-    <div><b>Name:</b>{{ name }}</div>
-    <div><b>id:</b>{{ id }}</div>
-    <div v-if="age"><b>Age:</b>{{ age }}</div>
+  <div :class="['person', { manager: isManager }]">
+    <div><b>Name:</b>{{ props.student.name }}</div>
+    <div><b>id:</b>{{ props.student.id }}</div>
+    <div v-if="props.student.age"><b>Age:</b>{{ props.student.age }}</div>
     <div v-if="props.isManager"><b>manager</b></div>
-    <div>
-      <b>Animals({{ animals?.length || 0 }}):</b>
-      <span v-for="animal in animals">{{ animal }}</span>
-    </div>
+    <button @click="$emit('randomizeId')">randomizeId</button>
   </div>
 </template>
 
@@ -38,5 +25,8 @@ const { name, id, age, animals } = props.student;
 }
 div {
   margin-bottom: 1rem;
+}
+.manager {
+  border: 2px solid orange;
 }
 </style>
