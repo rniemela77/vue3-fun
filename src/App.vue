@@ -5,9 +5,13 @@ import ComposableWorld from "./components/ComposableWorld.vue";
 import SimpleCounter from "./components/SimpleCounter.vue";
 import ToRefs from "./components/ToRefs.vue";
 import PropsWorld from "./components/PropsWorld.vue";
+import Computed from "./components/Computed.vue";
+import TeleportWorld from "./components/TeleportWorld.vue";
 </script>
 
 <template>
+  <TeleportWorld class="part" />
+  <Computed class="part" />
   <PropsWorld class="part" />
   <div class="flex">
     <ComposableWorld class="part" name="ComposableWorld #1" />
